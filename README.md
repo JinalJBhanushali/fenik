@@ -1,2 +1,2 @@
 # fenik
-This project is for managing inventory of cleaning material
+This project is used  to manage inventory for cleaning material Manufacturer

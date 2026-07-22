@@ -1,5 +1,15 @@
+using Fenik.API;
+
 var builder = WebApplication.CreateBuilder(args);
 
+//create logs folder for serilog
+var logPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "app-data", "logs");
+if(!Directory.Exists(logPath))
+{
+    Directory.CreateDirectory(logPath);
+}
+
+builder.Services.AddBackEndServices(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();

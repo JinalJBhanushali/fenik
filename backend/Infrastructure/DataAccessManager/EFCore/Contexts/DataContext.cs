@@ -17,5 +17,7 @@ namespace Infrastructure.DataAccessManager.EFCore.Contexts
         {
         }
         public DbSet<Customer> Customer { get; set; }
+
+        public DbSet<Token> Token { get; set; }
     }
 }

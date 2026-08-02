@@ -1,6 +1,7 @@
 ﻿using Infrastructure.DataAccessManager.EFCore;
 using Infrastructure.LogManager.Serilogs;
 using Infrastructure.SecurityManager.AspNetIdentity;
+using Infrastructure.SecurityManager.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,8 @@ namespace Infrastructure
             //>>> Serilog
             services.RegisterSerilog(configuration);
 
+            //>>> Token Manager
+            services.RegisterToken(configuration);
             //>>> Security Manager
             services.RegisterSecurityManager(configuration);
             return services;

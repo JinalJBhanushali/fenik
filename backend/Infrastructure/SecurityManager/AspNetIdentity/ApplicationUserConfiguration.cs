@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Domain.Common.Constants;
 
-namespace Infrastructure.DataAccessManager.SecurityManager.AspNetIdentity
+namespace Infrastructure.SecurityManager.AspNetIdentity
 {
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

@@ -2,7 +2,7 @@
 using Application.Common.Services.SecurityManager;
 using Domain.Entities;
 using Infrastructure.DataAccessManager.EFCore.Contexts;
-using Infrastructure.DataAccessManager.SecurityManager.Tokens;
+using Infrastructure.SecurityManager.Tokens;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
@@ -18,7 +18,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using static Domain.Common.Constants;
 
-namespace Infrastructure.DataAccessManager.SecurityManager.AspNetIdentity
+namespace Infrastructure.SecurityManager.AspNetIdentity
 {
     public class SecurityService : ISecurityService
     {

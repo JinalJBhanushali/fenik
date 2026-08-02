@@ -1,4 +1,4 @@
-﻿using Infrastructure.DataAccessManager.SecurityManager.AspNetIdentity;
+﻿using Infrastructure.SecurityManager.AspNetIdentity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.DataAccessManager.SecurityManager.Tokens
+namespace Infrastructure.SecurityManager.Tokens
 {
     public interface ITokenService
     {

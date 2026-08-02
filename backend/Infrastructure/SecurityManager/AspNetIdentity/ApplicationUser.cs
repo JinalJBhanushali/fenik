@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.DataAccessManager.SecurityManager.AspNetIdentity
+namespace Infrastructure.SecurityManager.AspNetIdentity
 {
     public class ApplicationUser : IdentityUser
     {

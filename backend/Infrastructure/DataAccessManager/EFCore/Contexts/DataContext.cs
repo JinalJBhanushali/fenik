@@ -1,6 +1,6 @@
 ﻿using Application.Common.Repository;
 using Domain.Entities;
-using Infrastructure.DataAccessManager.SecurityManager.AspNetIdentity;
+using Infrastructure.SecurityManager.AspNetIdentity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

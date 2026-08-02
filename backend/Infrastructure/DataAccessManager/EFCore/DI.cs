@@ -1,8 +1,4 @@
-﻿using Infrastructure.DataAccessManager.EFCore.Contexts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +6,16 @@ using System.Threading.Tasks;
 using Application.Common.CQS.Commands;
 using Application.Common.CQS.Queries;
 using Application.Common.Repository;
-using Serilog;
-using Microsoft.Extensions.Logging;
+using Application.Common.Services.SecurityManager;
+using Infrastructure.DataAccessManager.EFCore.Contexts;
 using Infrastructure.DataAccessManager.EFCore.Repositories;
+using Infrastructure.SecurityManager.AspNetIdentity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Infrastructure.DataAccessManager.EFCore
 {
@@ -41,7 +43,8 @@ namespace Infrastructure.DataAccessManager.EFCore
             services.AddScoped<IQueryContext, QueryContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
-       
+
+             services.AddScoped<ISecurityService, SecurityService>();
             return services;
         }
         //Extension Method of IHost to create database on application startup

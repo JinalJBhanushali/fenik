@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ButtonComponent } from '../../../ui/button/button.component';
 import { TableDropdownComponent } from '../../../common/table-dropdown/table-dropdown.component';
 import { BadgeComponent } from '../../../ui/badge/badge.component';
+import { MatTableModule } from '@angular/material/table'; // Must be sub-packaged path!
 
 interface Transaction {
   image: string;
@@ -18,17 +19,31 @@ interface Transaction {
   imports: [
     CommonModule,
     ButtonComponent,
-    TableDropdownComponent,
-    BadgeComponent,
+     MatTableModule
   ],
   templateUrl: './basic-table-three.component.html',
   styles: ``
 })
-export class BasicTableThreeComponent {
+export class BasicTableThreeComponent implements OnInit {
 
   // Type definition for the transaction data
 
+// Holds raw data from the JSON file
+  tableData: any[] = [];
+  
+  // Holds extracted column keys dynamically
+  columns: string[] = [];
+  @Input() CommonTableData: any;
+  ngOnInit(): void {
+    // Simulated fetch from a local JSON file or API
+    this.tableData = this.CommonTableData;
 
+    // Extract columns safely if data is available
+    if (this.tableData.length > 0) {
+      this.columns = Object.keys(this.tableData[0]); 
+      // Output will be: ['id', 'name', 'role', 'status']
+    }
+  }
   transactionData: Transaction[] = [
     {
       image: "/images/brand/brand-08.svg", // Path or URL for the image

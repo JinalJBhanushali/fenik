@@ -20,22 +20,22 @@ public static class DI
         
 
             // Password settings
-            options.Password.RequireDigit = identitySettings?.Password.RequireDigit;
-            options.Password.RequireLowercase = identitySettings?.Password.RequireLowercase;
-            options.Password.RequireUppercase = identitySettings?.Password.RequireUppercase;
-            options.Password.RequireNonAlphanumeric = identitySettings?.Password.RequireNonAlphanumeric;
-            options.Password.RequiredLength = identitySettings?.Password.RequiredLength;
+            options.Password.RequireDigit = identitySettings.Password.RequireDigit;
+            options.Password.RequireLowercase = identitySettings.Password.RequireLowercase;
+            options.Password.RequireUppercase = identitySettings.Password.RequireUppercase;
+            options.Password.RequireNonAlphanumeric = identitySettings.Password.RequireNonAlphanumeric;
+            options.Password.RequiredLength = identitySettings.Password.RequiredLength;
 
             // Lockout settings
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identitySettings?.Lockout.DefaultLockoutTimeSpanInMinutes);
-            options.Lockout.MaxFailedAccessAttempts = identitySettings?.Lockout.MaxFailedAccessAttempts;
-            options.Lockout.AllowedForNewUsers = identitySettings?.Lockout.AllowedForNewUsers;
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identitySettings.Lockout.DefaultLockoutTimeSpanInMinutes);
+            options.Lockout.MaxFailedAccessAttempts = identitySettings.Lockout.MaxFailedAccessAttempts;
+            options.Lockout.AllowedForNewUsers = identitySettings.Lockout.AllowedForNewUsers;
 
             // User settings
-            options.User.RequireUniqueEmail = identitySettings?.User.RequireUniqueEmail;
+            options.User.RequireUniqueEmail = identitySettings.User.RequireUniqueEmail;
 
             // SignIn settings
-            options.SignIn.RequireConfirmedEmail = identitySettings?.SignIn.RequireConfirmedEmail;
+            options.SignIn.RequireConfirmedEmail = identitySettings.SignIn.RequireConfirmedEmail;
 
         })
             .AddRoles<IdentityRole>()

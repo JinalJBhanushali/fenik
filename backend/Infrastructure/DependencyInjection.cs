@@ -1,4 +1,5 @@
 ﻿using Infrastructure.DataAccessManager.EFCore;
+using Infrastructure.EmailManager;
 using Infrastructure.LogManager.Serilogs;
 using Infrastructure.SecurityManager.AspNetIdentity;
 using Infrastructure.SecurityManager.Tokens;
@@ -21,6 +22,9 @@ namespace Infrastructure
             services.RegisterToken(configuration);
             //>>> Security Manager
             services.RegisterSecurityManager(configuration);
+
+            //>>> DeletedById Manager
+            services.RegisterEmailManager(configuration);
             return services;
         }
     }

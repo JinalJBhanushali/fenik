@@ -17,13 +17,13 @@ namespace Infrastructure.SecurityManager.AspNetIdentity
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-
+        public ApplicationUser()
+        {
+        }
         public ApplicationUser(
             string email,
             string firstName,
-            string lastName,
-            string companyName = "",
-            string createdById = ""
+            string lastName
             )
         {
             EmailConfirmed = true;

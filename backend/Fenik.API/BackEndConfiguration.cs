@@ -1,5 +1,6 @@
 ﻿using Application;
 using Infrastructure;
+using Microsoft.Extensions.Options;
 using System.Runtime.CompilerServices;
 
 namespace Fenik.API
@@ -14,12 +15,15 @@ namespace Fenik.API
             //>>> Infrastructure Layer 
             services.AddInfrastructureServices(configuration);
             services.AddHttpContextAccessor();
-            services.AddCors(opt =>
+            services.AddCors(options =>
             {
-                opt.AddDefaultPolicy(builder => builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
             });
             return services;
         }

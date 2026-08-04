@@ -7,38 +7,38 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class HttpcommonService {
    private http = inject(HttpClient); // 👈 Modern Injection syntax
-  private apiUrl = 'https://example.com'; // Swap with your API
+  //private apiUrl = API_URL; // Swap with your API
  // GET: Fetch all resources
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+  getAll(apiUrl: string): Observable<any[]> {
+    return this.http.get<any[]>(apiUrl).pipe(
       catchError(this.handleError)
     );
   }
 
   // GET: Fetch single resource by ID
-  getById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+  getById(apiUrl: string): Observable<any> {
+    return this.http.get<any>(apiUrl).pipe(
       catchError(this.handleError)
     );
   }
 
   // POST: Create a new resource
-  create(payload: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, payload).pipe(
+  create(apiUrl: string, payload: any): Observable<any> {
+    return this.http.post<any>(apiUrl, payload).pipe(
       catchError(this.handleError)
     );
   }
 
   // PUT: Update an entire existing resource
-  update(id: number, payload: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}`, payload).pipe(
+  update(apiUrl: string, payload: any): Observable<any> {
+    return this.http.put<any>(apiUrl, payload).pipe(
       catchError(this.handleError)
     );
   }
 
   // DELETE: Remove a resource
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+  delete(apiUrl: string): Observable<void> {
+    return this.http.delete<void>(apiUrl).pipe(
       catchError(this.handleError)
     );
   }

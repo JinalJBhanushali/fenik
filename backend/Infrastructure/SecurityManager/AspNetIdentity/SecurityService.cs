@@ -164,8 +164,7 @@ namespace Infrastructure.SecurityManager.AspNetIdentity
             var user = new ApplicationUser(
                 email,
                 firstName,
-                lastName,
-                companyName
+                lastName
             );
 
             user.EmailConfirmed = !_identitySettings.SignIn.RequireConfirmedEmail;

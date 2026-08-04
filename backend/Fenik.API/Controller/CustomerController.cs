@@ -27,7 +27,7 @@ namespace Fenik.API.Controller
                 Content = response
             });
         }
-        [HttpGet("GetCustomerList")]
+        [HttpGet()]
         public async Task<ActionResult<ApiSuccessResult<GetCustomerListResult>>> GetCustomerListAsync(
             CancellationToken cancellationToken,
             [FromQuery] bool isDeleted = false

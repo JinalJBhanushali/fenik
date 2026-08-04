@@ -9,7 +9,7 @@ export class HttpcommonService {
    private http = inject(HttpClient); // 👈 Modern Injection syntax
   //private apiUrl = API_URL; // Swap with your API
  // GET: Fetch all resources
-  getAll(apiUrl: string): Observable<any[]> {
+  getAll(apiUrl: string): Observable<any> {
     return this.http.get<any[]>(apiUrl).pipe(
       catchError(this.handleError)
     );

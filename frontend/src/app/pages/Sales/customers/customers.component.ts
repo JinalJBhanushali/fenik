@@ -1,9 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ComponentCardComponent } from '../../../shared/components/common/component-card/component-card.component';
 import { PageBreadcrumbComponent } from '../../../shared/components/common/page-breadcrumb/page-breadcrumb.component';
 import { BasicTableThreeComponent } from '../../../shared/components/tables/basic-tables/basic-table-three/basic-table-three.component';
 import { HttpcommonService } from '../../../services/common/httpcommon.service';
 import { Customer_API_URL } from '../../../const/apiurl';
+import { Customer } from '../../../model/customer';
+import { ApiResponse } from '../../../model/apiResponse';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-customers',
@@ -17,15 +20,23 @@ export class CustomersComponent implements OnInit {
   private httpService = inject(HttpcommonService);
   tableData: any[] = [];
   errorMessage: string = '';
-  ngOnInit(): void {
-    
-    // Simulated fetch from a local JSON file or API
-    this.loadCustomers();
-  }
+  @Output() pageChange = new EventEmitter<number>();
+@Output() searchChange = new EventEmitter<string>();
+ngOnInit() {
+   this.loadCustomers();
+//   this.searchSubject.pipe(
+//     debounceTime(500),
+//     distinctUntilChanged()
+//   ).subscribe(searchTerm => {
+//     this.searchChange.emit(searchTerm);
+//   });
+ }
+
+ 
    loadCustomers(): void {
     this.httpService.getAll(`${Customer_API_URL}/?isDeleted=false`).subscribe({
-      next: (data : any) => {
-        console.log('Fetched customer data:', data.content.data);  
+      next: (data : ApiResponse<Customer>) => {
+        console.log('Fetched customer data:', data.content.data);
         this.tableData = data.content.data;
       },
       error: (err) => {

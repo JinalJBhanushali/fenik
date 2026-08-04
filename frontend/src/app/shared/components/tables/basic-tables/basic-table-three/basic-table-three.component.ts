@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, OnChanges } from '@angular/core';
 import { ButtonComponent } from '../../../ui/button/button.component';
 import { TableDropdownComponent } from '../../../common/table-dropdown/table-dropdown.component';
 import { BadgeComponent } from '../../../ui/badge/badge.component';
@@ -24,19 +24,18 @@ interface Transaction {
   templateUrl: './basic-table-three.component.html',
   styles: ``
 })
-export class BasicTableThreeComponent implements OnInit {
+export class BasicTableThreeComponent implements OnInit, OnChanges {
 
   // Type definition for the transaction data
 
 // Holds raw data from the JSON file
-  tableData: any[] = [];
+    @Input() tableData: any[] = [];
+    @Input() title: string = '';
   
   // Holds extracted column keys dynamically
   columns: string[] = [];
-  @Input() CommonTableData: any;
   ngOnInit(): void {
-    // Simulated fetch from a local JSON file or API
-    this.tableData = this.CommonTableData;
+    console.log('CommonTableData received:', this.tableData);
 
     // Extract columns safely if data is available
     if (this.tableData.length > 0) {
@@ -44,139 +43,24 @@ export class BasicTableThreeComponent implements OnInit {
       // Output will be: ['id', 'name', 'role', 'status']
     }
   }
-  transactionData: Transaction[] = [
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-    {
-      image: "/images/brand/brand-08.svg", // Path or URL for the image
-      action: "Bought PYPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-07.svg", // Path or URL for the image
-      action: "Bought AAPL", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Pending",
-    },
-    {
-      image: "/images/brand/brand-15.svg", // Path or URL for the image
-      action: "Sell KKST", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-02.svg", // Path or URL for the image
-      action: "Bought FB", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Success",
-    },
-    {
-      image: "/images/brand/brand-10.svg", // Path or URL for the image
-      action: "Sell AMZN", // Action description
-      date: "Nov 23, 01:00 PM", // Date and time of the transaction
-      amount: "$2,567.88", // Transaction amount
-      category: "Finance", // Category of the transaction
-      status: "Failed",
-    },
-  ]
 
   currentPage = 1;
   itemsPerPage = 5;
-
+  ngOnChanges(changes: SimpleChanges) { 
+       if (changes['tableData']?.currentValue?.length) {
+    this.columns = Object.keys(this.tableData[0]);
+    this.currentPage = 1; // reset page when new data arrives
+  
+  }
+  }
   get totalPages(): number {
-    return Math.ceil(this.transactionData.length / this.itemsPerPage);
+    return Math.ceil(this.tableData.length / this.itemsPerPage);
   }
 
-  get currentItems(): Transaction[] {
+  get currentItems(): any[] {
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    return this.transactionData.slice(start, start + this.itemsPerPage);
+    console.log('Current Items:',start ,this.tableData.slice(start, start + this.itemsPerPage));
+    return this.tableData.slice(start, start + this.itemsPerPage);
   }
 
   goToPage(page: number) {
@@ -193,6 +77,10 @@ export class BasicTableThreeComponent implements OnInit {
   handleDelete(item: Transaction) {
     // logic here
     console.log('Delete:', item);
+  }
+  onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+   // this.searchSubject.next(value);
   }
 
   getBadgeColor(status: string): 'success' | 'warning' | 'error' {
